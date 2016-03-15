@@ -4,6 +4,22 @@
 import os
 
 
+
+def param_check(pre, suf, name, path):
+
+
+    
+    if ((name != None and pre != None) or (name != None and suf != None)):
+        return -1
+    return 0
+
+
+def do_search(path, level, pre, suf, name):
+
+    os.path.isdir()
+
+    return
+
 allFileNum = 0
 
 def printPath(level, path):  

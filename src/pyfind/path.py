@@ -7,7 +7,9 @@ import os
 
 def param_check(pre, suf, name, path):
 
-
+    if(not os.path.isdir(path)):
+        print path + "is not a valid path"
+        return -1
     
     if ((name != None and pre != None) or (name != None and suf != None)):
         return -1
@@ -16,7 +18,38 @@ def param_check(pre, suf, name, path):
 
 def do_search(path, level, pre, suf, name):
 
-    os.path.isdir()
+    dir_list = []
+    fileList = []
+    
+    files = os.listdir(path)
+    
+    for f in files:
+        if(os.path.isdir(path + '/' + f)):
+            dir_list.append(path + '/' + f)
+        elif (os.path.isfile(path + '/' + f)):
+            fileList.append(path + '/' + f)
+            
+            if (name != None):
+                # bi jiao wen jian ming
+                if (len(name) > len(f)):
+                    # wen jian min yu cha zhao bu pi pei
+                    continue
+                elif(f.find(name, 0, len(f)) != -1):
+                    print "path + '/' + f"
+    
+            elif(pre != None and suf != None):
+                print
+            elif(pre != None and suf == None):
+                if(len(pre) > len(f)):
+                    continue
+                else
+                    print
+                print
+            elif(suf != None and pre == None):
+                print
+
+    for dl in dir_list:
+        do_search(path, level, pre, suf, name)
 
     return
 

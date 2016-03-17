@@ -42,10 +42,19 @@ def do_search(path, level, pre, suf, name):
             elif(pre != None and suf == None):
                 if(len(pre) > len(f)):
                     continue
-                else
-                    print
-                print
+                else:
+                    if (f.find(pre,0,len(f))!=-1):
+                        print path + '/' + f
+                    else:
+                        continue
             elif(suf != None and pre == None):
+                if(len(suf) > len(f)):
+                    continue
+                else:
+                    if (f.endswith(suf,0,len(f))!=-1):
+                        print path + '/' + f
+                    else:
+                        continue
                 print
 
     for dl in dir_list:

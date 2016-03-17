@@ -1,9 +1,28 @@
+#!/usr/bin/python
 # -*- coding:utf-8 -*-
 
 
 import os
+import platform
 
 
+slash = None
+
+
+def do_system_check():
+    
+    global slash
+    
+    if (platform.system() == "Windows"):
+        print platform.system()
+        slash = "\\"
+    elif(platform.system() == "Linux"):
+        print platform.system()
+        slash = "\/"
+    else:
+        print platform.system()
+    
+    return
 
 def param_check(pre, suf, name, path):
 
@@ -18,16 +37,17 @@ def param_check(pre, suf, name, path):
 
 def do_search(path, level, pre, suf, name):
 
+    global slash
     dir_list = []
     fileList = []
     
     files = os.listdir(path)
     
     for f in files:
-        if(os.path.isdir(path + '/' + f)):
-            dir_list.append(path + '/' + f)
-        elif (os.path.isfile(path + '/' + f)):
-            fileList.append(path + '/' + f)
+        if(os.path.isdir(path + slash + f)):
+            dir_list.append(path + slash + f)
+        elif (os.path.isfile(path + slash + f)):
+            fileList.append(path + slash + f)
             
             if (name != None):
                 # bi jiao wen jian ming
@@ -35,7 +55,7 @@ def do_search(path, level, pre, suf, name):
                     # wen jian min yu cha zhao bu pi pei
                     continue
                 elif(f.find(name, 0, len(f)) != -1):
-                    print "path + '/' + f"
+                    print path + slash + f
     
             elif(pre != None and suf != None):
                 print
@@ -44,7 +64,7 @@ def do_search(path, level, pre, suf, name):
                     continue
                 else:
                     if (f.find(pre,0,len(f))!=-1):
-                        print path + '/' + f
+                        print path + slash + f
                     else:
                         continue
             elif(suf != None and pre == None):
@@ -52,13 +72,12 @@ def do_search(path, level, pre, suf, name):
                     continue
                 else:
                     if (f.endswith(suf,0,len(f))!=-1):
-                        print path + '/' + f
+                        print path + slash + f
                     else:
                         continue
-                print
 
     for dl in dir_list:
-        do_search(path, level, pre, suf, name)
+        do_search(dl, level, pre, suf, name)
 
     return
 

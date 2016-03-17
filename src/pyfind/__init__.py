@@ -1,9 +1,9 @@
+#!/usr/bin/python
 # -*- coding:utf-8 -*-
 import path
 import sys
 import os
 import re
-
 
 search_path = os.getcwd()
 serach_pre = None
@@ -23,10 +23,12 @@ def show_usage():
     print "tips: do not use -pre and -name or -suf and -name together"
 
 if __name__ == '__main__':
+
+    path.do_system_check()
     
-    if (0 == len(sys.argv)):
+    if (1 == len(sys.argv)):
         show_usage()
-        pass
+        
     
     for param in sys.argv:
         params.append(param)
